@@ -19,12 +19,12 @@ const router = createRouter({
       component: load('MoviesPage')
     },
     {
-      path: '/movie',
+      path: '/search',
       name: 'search',
       component: load('SearchPage')
     },
     {
-      path: '/movie',
+      path: '/tv',
       name: 'tv',
       component: load('TvPage')
     },
