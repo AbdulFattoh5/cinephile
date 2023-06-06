@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,12 +8,12 @@
     outline: none;
 }
 
-body{
+body {
     background: #141414;
     color: white;
 }
 
-.container{
+.container {
     max-width: 1350px;
     padding: 0 15px;
     width: 100%;
@@ -21,8 +21,8 @@ body{
     margin: 0 auto;
 }
 
-@mixin media ($size){
-    @media (max-width:#{size}px){
+@mixin media($size) {
+    @media (max-width: #{$size}px) {
         @content
     }
 }

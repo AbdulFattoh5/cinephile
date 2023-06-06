@@ -14,11 +14,61 @@
         height: 100px;
     }
 
+    &__btn {
+        display: none;
+
+        @include media(800) {
+            display: flex;
+        }
+    }
+
+    &__close {
+        background: white;
+        outline: none;
+        border: none;
+        display: none;
+        position: absolute;
+        right: 15px;
+        top: 30px;
+
+        @include media(800) {
+            display: flex;
+        }
+    }
+
     &__list {
         display: flex;
         align-items: center;
-        justify-content: center;
         gap: 30px;
+
+        @include media(800) {
+            position: fixed;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background: #141414;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            overflow-y: auto;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+
+            &.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+
+                & li {
+                    margin-top: 50px;
+                    &:first-child{
+                        margin-top: auto;
+                    }
+                }
+            }
+        }
     }
 
     &__link {
