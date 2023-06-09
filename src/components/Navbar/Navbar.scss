@@ -54,7 +54,7 @@
             transform: translateY(-100%);
             opacity: 0;
             visibility: hidden;
-            transition: 0.3s;
+            transition: 0.25s;
 
             &.active {
                 opacity: 1;
@@ -63,7 +63,8 @@
 
                 & li {
                     margin-top: 50px;
-                    &:first-child{
+
+                    &:first-child {
                         margin-top: auto;
                     }
                 }
