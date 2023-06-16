@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import Upcoming from '../components/Upcoming/Upcoming.vue';
+import Upcoming from '@/components/Upcoming/Upcoming.vue';
 </script>
 
 <style lang="scss" scoped>
