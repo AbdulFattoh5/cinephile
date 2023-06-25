@@ -1,6 +1,6 @@
 <template>
     <div>
-        movies
+        Movie
     </div>
 </template>
 
@@ -8,6 +8,4 @@
 
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

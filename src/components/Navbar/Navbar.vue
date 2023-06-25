@@ -9,16 +9,16 @@
                     <button class="nav__btn" @click="burgerOn">
                         <img src="@/assets/images/menu.svg" alt="">
                     </button>
-                    <ul class="nav__list" :class="{active: burger}">
+                    <ul class="nav__list" :class="{ active: burger }">
                         <li class="nav__close" @click="burgerOff">
                             <img src="@/assets/images/closeMenu.svg" alt="">
                         </li>
                         <li v-for="link in links" :key="link.title" @click="burger = false">
-                            <router-link class="nav__link" :to="link.url">
+                            <router-link :to="link.url" class="nav__link">
                                 {{ link.title }}
                             </router-link>
                         </li>
-                        <li  @click="burger = false">
+                        <li @click="burger = false">
                             <router-link to="/search" class="nav__link">
                                 <img src="@/assets/images/search.svg" alt="">
                             </router-link>
@@ -33,30 +33,25 @@
 <script setup>
 import { ref } from 'vue'
 const links = ref([
-    {
-        title: 'Главная',
-        url: '/'
-    },
-    {
-        title: 'Фильмы',
-        url: '/movie'
-    },
-    {
-        title: 'Сериалы',
-        url: '/tv'
-    }
+    { title: 'Главная', url: '/' },
+    { title: 'Фильмы', url: '/movie' },
+    { title: 'Сериалы', url: '/tv' },
 ])
+const props = defineProps({
+  
+})
+
 const burger = ref(false)
-
-const burgerOn = () =>{
+const burgerOn = () => {
     burger.value = true
-    document.body.style.overflow = 'hiden'
+    document.body.style.overflow = 'hidden'
+}
+const burgerOff = () => {
+    burger.value = false
+    document.body.style.overflow = 'visible'
 }
 
-const burgerOff = () =>{
-    burger.value = false
-    document.body.style.overflow = 'visiable'
-}
+
 </script>
 
 <style lang="scss" scoped></style>

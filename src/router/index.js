@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/HomePage.vue'
+import Home from '@/views/HomePage.vue'
 
 function load(component) {
   return () => import(`@/views/${component}.vue`)
@@ -30,9 +30,10 @@ const router = createRouter({
     },
     {
       path: '/:catchAll(.*)*',
-      name: 'notfound',
+      name: 'notfount',
       component: load('404')
     },
+
   ]
 })
 
