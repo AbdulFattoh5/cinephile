@@ -4,28 +4,20 @@
       <span>{{ props.type == "movie" ? "Фильмы" : "Сереалы" }}</span>
       <img src="@/assets/images/arrow.png" alt="" />
     </router-link>
-    <Swiper
-      :modules="modules"
-      :space-between="25"
-      :navigation="true"
-      :breakpoints="swiperOption.breakpoints"
-    >
-      <SwiperSlide class="main__video-item" v-for="(item, index) in content">
-        <img
-          v-lazy="imgUrlFull + item.backdrop_path"
-          class="main__video-item-img"
-          src="@/assets/images/card.png"
-          alt=""
-        />
+    <Swiper :modules="modules" :space-between="25" :navigation="true" :breakpoints="swiperOption.breakpoints">
+      <SwiperSlide class="main__video-item" v-for="(item, index) in content" @click="getItem(item)">
+        <img v-lazy="imgUrlFull + item.backdrop_path" class="main__video-item-img" src="@/assets/images/card.png"
+          alt="" />
         <router-link :to="`${props.type}/`" class="main__video-item-link" />
         <h2 class="main__video-item-title">{{ item.title || item.name }}</h2>
       </SwiperSlide>
       <SwiperSlide>
         <router-link :to="`${props.type}/`" class="main__video-item">
-            {{ props.type == "movie" ? "Все фильмы" : "Все сереалы" }}
+          {{ props.type == "movie" ? "Все фильмы" : "Все сереалы" }}
         </router-link>
       </SwiperSlide>
     </Swiper>
+    <InfoBlock :current="current" @close="close" :type="type" :open="open" />
   </section>
 </template>
 
@@ -37,7 +29,8 @@ import { Navigation } from "swiper";
 import { imgUrlFull } from "@/static";
 import "swiper/scss";
 import "swiper/scss/navigation";
-
+import InfoBlock from "../InfoBlock/InfoBlock.vue";
+import { useItemId } from '@/stores/itemId'
 const props = defineProps(["type"]);
 const popular = usePopular();
 let modules = ref([Navigation]);
@@ -64,7 +57,19 @@ let swiperOption = ref({
     },
   },
 });
+let current = ref(null)
+let open = ref(false)
+const itemIdStore = useItemId()
+const getItem = async item => {
+  current.value = null
+  await itemIdStore.getItemId({ type: props.type, id: item.id })
+  current.value = props.type == 'movie' ? itemIdStore.movie : props.type == 'tv' ? itemIdStore.tv : ''
+  open.value = true
+}
 
+const close = () => {
+  open.value = false
+}
 onMounted(() => {
   popular.getPopular({ type: props.type });
 });
