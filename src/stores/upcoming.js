@@ -7,8 +7,6 @@ export const useUpcoming = defineStore({
     state: () => ({
         url: 'https://api.themoviedb.org/3/movie/upcoming/',
         upcoming: null,
-
-
     }),
     actions: {
         async getUpcoming() {

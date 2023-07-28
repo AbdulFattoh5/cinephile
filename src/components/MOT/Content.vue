@@ -6,7 +6,7 @@
     </router-link>
     <Swiper :modules="modules" :space-between="25" :navigation="true" :breakpoints="swiperOption.breakpoints">
       <SwiperSlide class="main__video-item" v-for="(item, index) in content" @click="getItem(item)">
-        <img v-lazy="imgUrlFull + item.backdrop_path" class="main__video-item-img" src="@/assets/images/card.png"
+        <img v-lazy="imgUrlFull + item.poster_path" class="main__video-item-img" src="@/assets/images/card.png"
           alt="" />
         <router-link :to="`${props.type}/`" class="main__video-item-link" />
         <h2 class="main__video-item-title">{{ item.title || item.name }}</h2>
